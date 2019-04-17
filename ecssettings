@@ -1,0 +1,20 @@
+Review
+Edit
+Cluster sample-ecs-cluster
+Launch type EC2
+Task Definition sample-task:15
+Service name sample-service2
+Service type REPLICA
+Number of tasks 2
+Minimum healthy percent 100
+Maximum percent 200
+Configure network
+Edit
+Container Name:sample-dc
+Container Port:3333
+ELB Name:sample-alb-ecs
+Target Group:ecs-sample-sample-service2
+Health check protocol:TCP
+Listener Port:3334
+Service Role:<create_new>
+Set Auto Scaling (optional)
