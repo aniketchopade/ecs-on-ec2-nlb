@@ -30,9 +30,11 @@ variable "asg_desired" {
 variable "ami" {
   description = "Amazon machine image"
 }
+
 variable "vpc_id" {
   description = "VPC where this app will launch"
 }
+
 variable "access_key" {
   description = "AWS access key"
 }
@@ -49,6 +51,16 @@ variable "subnet_1" {
   description = "Second Subnet for DC application"
 }
 
+
+variable "public_subnet_2" {
+  description = "First Subnet for DC application"
+}
+
+variable "public_subnet_1" {
+  description = "Second Subnet for DC application"
+}
+
+
 variable "security_group_2" {
   description = "DC security group"
 }
@@ -60,3 +72,4 @@ variable "security_group_1" {
 variable "image_url" {
   description = "Role which Allows EC2 to call AWS services on your behalf."
 }
+

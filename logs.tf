@@ -9,3 +9,4 @@ resource "aws_cloudwatch_log_group" "ecs" {
 resource "aws_cloudwatch_log_group" "app" {
   name = "sample-ecs-group/app"
 }
+

@@ -1,10 +1,9 @@
-
 ### Security
 
 resource "aws_security_group" "sample_alb_sg" {
   description = "controls access to the application ELB"
 
-  vpc_id = "${var.vpc_id}"
+  vpc_id = var.vpc_id
   name   = "sample-ecs-lbsg"
 
   ingress {
@@ -27,7 +26,7 @@ resource "aws_security_group" "sample_alb_sg" {
 
 resource "aws_security_group" "sample_application_sg" {
   description = "controls direct access to application instances"
-  vpc_id      = "${var.vpc_id}"
+  vpc_id      = var.vpc_id
   name        = "sample-ecs-appsg"
 
   ingress {
@@ -35,9 +34,7 @@ resource "aws_security_group" "sample_application_sg" {
     from_port = 22
     to_port   = 22
 
-    cidr_blocks = 
-      ["0.0.0.0/0"],
-    
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
@@ -46,7 +43,7 @@ resource "aws_security_group" "sample_application_sg" {
     to_port   = 3333
 
     security_groups = [
-      "${aws_security_group.sample_alb_sg.id}",
+      aws_security_group.sample_alb_sg.id,
     ]
   }
 
@@ -57,3 +54,4 @@ resource "aws_security_group" "sample_application_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+

@@ -1,4 +1,3 @@
-
 ## IAM
 
 resource "aws_iam_role" "ecs_service" {
@@ -19,11 +18,12 @@ resource "aws_iam_role" "ecs_service" {
   ]
 }
 EOF
+
 }
 
 resource "aws_iam_role_policy" "ecs_service" {
   name = "sample-ecs-policy"
-  role = "${aws_iam_role.ecs_service.id}"
+  role = aws_iam_role.ecs_service.id
 
   policy = <<EOF
 {
@@ -44,16 +44,17 @@ resource "aws_iam_role_policy" "ecs_service" {
   ]
 }
 EOF
+
 }
 
 resource "aws_iam_instance_profile" "app" {
-  name = "sample-instance-profile"
-  role = "${aws_iam_role.app_instance.name}"
+name = "sample-instance-profile"
+role = aws_iam_role.app_instance.name
 }
 
 resource "aws_iam_role" "app_instance" {
-  name = "sample-instance-role"
-  assume_role_policy = <<EOF
+name               = "sample-instance-role"
+assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -68,19 +69,21 @@ resource "aws_iam_role" "app_instance" {
   ]
 }
 EOF
+
 }
 
 data "template_file" "instance_profile" {
-  template = "${file("${path.module}/instance-profile-policy.json")}"
+template = file("${path.module}/instance-profile-policy.json")
 
-  vars {
-    app_log_group_arn = "${aws_cloudwatch_log_group.app.arn}"
-    ecs_log_group_arn = "${aws_cloudwatch_log_group.ecs.arn}"
-  }
+vars = {
+app_log_group_arn = aws_cloudwatch_log_group.app.arn
+ecs_log_group_arn = aws_cloudwatch_log_group.ecs.arn
+}
 }
 
 resource "aws_iam_role_policy" "instance" {
-  name   = "RateshopEcsInstanceRole"
-  role   = "${aws_iam_role.app_instance.id}"
-  policy = "${data.template_file.instance_profile.rendered}"
+name = "RateshopEcsInstanceRole"
+role = aws_iam_role.app_instance.id
+policy = data.template_file.instance_profile.rendered
 }
+
