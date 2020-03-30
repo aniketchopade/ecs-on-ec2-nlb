@@ -1,21 +1,21 @@
 aws_region      = "us-east-1"
-key_name        = ""
+key_name        = "mybox"
 ami             = "ami-aff65ad2"
-vpc_id          = "vpc-03273741f48e04e40"
-access_key = "" 
-secret_key = "" 
+vpc_id          = "vpc-045f73ed772f3758c"
+access_key = "22222222222222222222" 
+secret_key = "iDCXS1HDWo9c22222222222222222222jFD7feAK" 
 
-security_group_1 = "sg-0cd8d1793ed343f80"
-security_group_2 = "sg-0c10be4ebd9bd4ee4"
+security_group_1 = "sg-0be8324615fbadfe0"
+security_group_2 = "sg-0be8324615fbadfe0"
 
-image_url = "269898812198.dkr.ecr.us-east-1.amazonaws.com/tcpgo" 
+image_url = "aniketchopade/gotcp" 
 asg_min   = 1
-asg_max   = 2
-asg_desired = 2
+asg_max   = 3
+asg_desired = 3
 instance_type = "t2.micro"
 
-subnet_2     = "subnet-0b25e604e3f5b31fa"
-subnet_1     = "subnet-0b521a133753621a2"
+subnet_2     = "subnet-023f5f2214906e8c6"
+subnet_1     = "subnet-05d27e43d1f07bc93"
 
-public_subnet_1 = "subnet-0c1ecfc404639126b"
-public_subnet_2 = "subnet-002f31b15ae628935"
+public_subnet_1 = "subnet-023f5f2214906e8c6"
+public_subnet_2 = "subnet-05d27e43d1f07bc93"
